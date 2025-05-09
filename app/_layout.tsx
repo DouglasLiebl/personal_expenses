@@ -1,33 +1,42 @@
+import { JetBrainsMono_100Thin, JetBrainsMono_100Thin_Italic, JetBrainsMono_200ExtraLight, JetBrainsMono_200ExtraLight_Italic, JetBrainsMono_300Light, JetBrainsMono_300Light_Italic, JetBrainsMono_400Regular, JetBrainsMono_400Regular_Italic, JetBrainsMono_500Medium, JetBrainsMono_500Medium_Italic, JetBrainsMono_600SemiBold, JetBrainsMono_600SemiBold_Italic, JetBrainsMono_700Bold, JetBrainsMono_700Bold_Italic, JetBrainsMono_800ExtraBold, JetBrainsMono_800ExtraBold_Italic } from '@expo-google-fonts/jetbrains-mono';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
-import { useColorScheme } from '@/components/useColorScheme';
-
 export {
-  // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from 'expo-router';
 
 export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
+  initialRouteName: "login",
 };
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-    ...FontAwesome.font,
+    JetBrainsMono_100Thin, 
+    JetBrainsMono_200ExtraLight, 
+    JetBrainsMono_300Light, 
+    JetBrainsMono_400Regular, 
+    JetBrainsMono_500Medium, 
+    JetBrainsMono_600SemiBold, 
+    JetBrainsMono_700Bold, 
+    JetBrainsMono_800ExtraBold, 
+    JetBrainsMono_100Thin_Italic, 
+    JetBrainsMono_200ExtraLight_Italic, 
+    JetBrainsMono_300Light_Italic, 
+    JetBrainsMono_400Regular_Italic, 
+    JetBrainsMono_500Medium_Italic, 
+    JetBrainsMono_600SemiBold_Italic, 
+    JetBrainsMono_700Bold_Italic, 
+    JetBrainsMono_800ExtraBold_Italic
   });
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error;
   }, [error]);
@@ -46,14 +55,11 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
-    </ThemeProvider>
+    <Stack>
+      <Stack.Screen name="login" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    </Stack>
   );
 }
