@@ -1,4 +1,3 @@
-
 import TextComponentsProps from "@/@types/TextComponentsProps";
 import Colors from "@/constants/Colors";
 import React from "react";
